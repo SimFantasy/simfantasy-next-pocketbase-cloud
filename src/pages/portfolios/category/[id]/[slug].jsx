@@ -1,12 +1,19 @@
+import Head from 'next/head'
 import { ListTitlebar, PortfolioList } from '@/components'
 import fetchApi from '@/service/apis'
+import { siteName } from '@/constants/settings'
 
 const CategoryPortfolios = ({ portfolios, page, portfolioCategories }) => {
   return (
-    <div className='flex flex-col gap-10'>
-      <ListTitlebar title='作品集' categories={portfolioCategories} />
-      <PortfolioList portfolios={portfolios} page={page} />
-    </div>
+    <>
+      <Head>
+        <title>作品 - {siteName}</title>
+      </Head>
+      <div className='flex flex-col gap-10'>
+        <ListTitlebar title='作品' categories={portfolioCategories} />
+        <PortfolioList portfolios={portfolios} page={page} />
+      </div>
+    </>
   )
 }
 

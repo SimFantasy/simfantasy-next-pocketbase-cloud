@@ -1,20 +1,27 @@
 import { Author, Titlebar, PostList, PortfolioList } from '@/components'
+import Head from 'next/head'
+
 import fetchApi from '@/service/apis'
-import { authId } from '@/constants/settings'
+import { authId, siteName } from '@/constants/settings'
 
 const Home = ({ author, featurePosts, featurePortfolios }) => {
   return (
-    <div className='w-full flex flex-col gap-10'>
-      <Author {...author} />
-      <div className='pb-10'>
-        <Titlebar title='文章' link='/posts' />
-        <PostList posts={featurePosts} />
+    <>
+      <Head>
+        <title>主页 - {siteName}</title>
+      </Head>
+      <div className='w-full flex flex-col gap-10'>
+        <Author {...author} />
+        <div className='pb-10'>
+          <Titlebar title='文章' link='/posts' />
+          <PostList posts={featurePosts} />
+        </div>
+        <div>
+          <Titlebar title='作品' link='/portfolios' />
+          <PortfolioList portfolios={featurePortfolios} />
+        </div>
       </div>
-      <div>
-        <Titlebar title='作品' link='/portfolios' />
-        <PortfolioList portfolios={featurePortfolios} />
-      </div>
-    </div>
+    </>
   )
 }
 

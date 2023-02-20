@@ -1,13 +1,19 @@
-import { useRouter } from 'next/router'
+import Head from 'next/head'
 import fetchApi from '@/service/apis'
 import { PostList, ListTitlebar } from '@/components'
+import { siteName } from '@/constants/settings'
 
 const Posts = ({ posts, page, postCategories }) => {
   return (
-    <div className='flex flex-col gap-10'>
-      <ListTitlebar title='文章集' categories={postCategories} />
-      <PostList posts={posts} page={page} />
-    </div>
+    <>
+      <Head>
+        <title>文章 - {siteName}</title>
+      </Head>
+      <div className='flex flex-col gap-10'>
+        <ListTitlebar title='文章' categories={postCategories} />
+        <PostList posts={posts} page={page} />
+      </div>
+    </>
   )
 }
 

@@ -1,12 +1,19 @@
+import Head from 'next/head'
 import fetchApi from '@/service/apis'
 import { PostList, ListTitlebar } from '@/components'
+import { siteName } from '@/constants/settings'
 
 const CategoryPosts = ({ posts, page, postCategories }) => {
   return (
-    <div>
-      <ListTitlebar title='Posts' categories={postCategories} />
-      <PostList posts={posts} page={page} />
-    </div>
+    <>
+      <Head>
+        <title>文章 - {siteName}</title>
+      </Head>
+      <div>
+        <ListTitlebar title='Posts' categories={postCategories} />
+        <PostList posts={posts} page={page} />
+      </div>
+    </>
   )
 }
 
